@@ -25,7 +25,11 @@
 </head>
 <body>
 
-<section id="hero">
+<div id="preloader">
+  <img src="logo.png" alt="OhnO! Jazzband">
+</div>
+
+<section id="hero" data-nav-theme="dark">
     <video id="hero-video" autoplay loop playsinline>
       <source src="video/hero_video.mp4" type="video/mp4">
     </video>
@@ -38,6 +42,15 @@
     <div class="hero-next-show">
       <span class="ns-v3-label">Next Show</span>
       <span class="ns-v3-info">27 JUN &nbsp;·&nbsp; Gouda Jazz Festival</span>
+      <div class="countdown">
+        <div class="cd-item"><span class="cd-num" id="cd-days">00</span><span class="cd-label">Dagen</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-item"><span class="cd-num" id="cd-hours">00</span><span class="cd-label">Uur</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-item"><span class="cd-num" id="cd-mins">00</span><span class="cd-label">Min</span></div>
+        <div class="cd-sep">:</div>
+        <div class="cd-item"><span class="cd-num" id="cd-secs">00</span><span class="cd-label">Sec</span></div>
+      </div>
     </div>
 
     <div class="scroll-indicator">
@@ -53,7 +66,22 @@
     </div>
   </section>
 
-  <section id="shows-gigs">
+  <div class="marquee-band">
+    <div class="marquee-track">
+      <span>New Orleans Jazz</span><span class="marquee-sep">·</span>
+      <span>Since 2001</span><span class="marquee-sep">·</span>
+      <span>12 Musicians</span><span class="marquee-sep">·</span>
+      <span>Streetparade &amp; Festival</span><span class="marquee-sep">·</span>
+      <span>National &amp; International</span><span class="marquee-sep">·</span>
+      <span>New Orleans Jazz</span><span class="marquee-sep">·</span>
+      <span>Since 2001</span><span class="marquee-sep">·</span>
+      <span>12 Musicians</span><span class="marquee-sep">·</span>
+      <span>Streetparade &amp; Festival</span><span class="marquee-sep">·</span>
+      <span>National &amp; International</span><span class="marquee-sep">·</span>
+    </div>
+  </div>
+
+  <section id="shows-gigs" data-nav-theme="dark">
     <div class="inner">
       <h2>Shows &amp; Gigs</h2>
 
@@ -178,10 +206,10 @@
     </div>
   </section>
 
-  <section id="the-band">
+  <section id="the-band" data-nav-theme="light">
     <h2>The Band</h2>
     <div class="carousel">
-      <button class="carousel-btn carousel-prev" aria-label="Vorige">&#8592;</button>
+      <button class="carousel-btn carousel-prev" aria-label="Vorige"><i class="fa-solid fa-chevron-left"></i></button>
       <div class="carousel-track-wrapper">
         <div class="carousel-track">
           <div class="carousel-slide">
@@ -306,11 +334,11 @@
           </div>
         </div>
       </div>
-      <button class="carousel-btn carousel-next" aria-label="Volgende">&#8594;</button>
+      <button class="carousel-btn carousel-next" aria-label="Volgende"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
   </section>
 
-  <section id="our-story">
+  <section id="our-story" data-nav-theme="dark">
   <div class="story-watermark">♫</div>
   <div class="inner">
     <h2>Our Story</h2>
@@ -354,7 +382,7 @@
   </div>
   </section>
 
-  <section id="video">
+  <section id="video" data-nav-theme="light">
     <h2>Video</h2>
     <div class="video-inner">
 
@@ -396,7 +424,7 @@
     </div>
   </section>
 
-  <section id="where-weve-been">
+  <section id="where-weve-been" data-nav-theme="light">
     <h2>Where We've Been</h2>
     <div class="inner">
 
@@ -429,7 +457,27 @@
     </div>
   </section>
 
-  <section id="photos">
+  <section id="testimonials" data-nav-theme="light">
+    <div class="inner">
+      <h2>What They Say</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <p class="testimonial-quote">"Een fantastische band die het publiek direct meesleurt in de sfeer van New Orleans. Elke keer weer een feest."</p>
+          <p class="testimonial-source">Breda Jazz Festival</p>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-quote">"OhnO! Jazzband bracht energie, kleur en muzikale klasse naar ons festival. Een absolute aanrader!"</p>
+          <p class="testimonial-source">Gouda Jazz Festival</p>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-quote">"Warmly received by our audience. A professional band with authentic New Orleans flair and boundless energy."</p>
+          <p class="testimonial-source">Riverboat Jazz Festival, Denemarken</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="photos" data-nav-theme="dark">
     <h2>Photo's</h2>
     <div class="photo-grid">
       <div class="photo-item"><img loading="lazy" src="images/photogallery/1.jpg" alt="OhnO! Jazzband foto 1"></div>
@@ -458,7 +506,22 @@
     </div>
   </section>
 
-  <section id="get-in-touch">
+  <div class="marquee-band">
+    <div class="marquee-track">
+      <span>New Orleans Jazz</span><span class="marquee-sep">·</span>
+      <span>Since 2001</span><span class="marquee-sep">·</span>
+      <span>12 Musicians</span><span class="marquee-sep">·</span>
+      <span>Streetparade &amp; Festival</span><span class="marquee-sep">·</span>
+      <span>National &amp; International</span><span class="marquee-sep">·</span>
+      <span>New Orleans Jazz</span><span class="marquee-sep">·</span>
+      <span>Since 2001</span><span class="marquee-sep">·</span>
+      <span>12 Musicians</span><span class="marquee-sep">·</span>
+      <span>Streetparade &amp; Festival</span><span class="marquee-sep">·</span>
+      <span>National &amp; International</span><span class="marquee-sep">·</span>
+    </div>
+  </div>
+
+  <section id="get-in-touch" data-nav-theme="light">
     <div class="inner">
       <h2>Get in Touch</h2>
       <div class="contact-columns">
@@ -519,9 +582,22 @@
     </div>
   </section>
 
-  <section id="outro">
+  <section id="outro" data-nav-theme="light">
     <img src="logo.png" alt="OhnO! Jazzband logo">
   </section>
+
+  <nav class="dot-nav" id="dot-nav">
+    <a class="dot-nav-item active" href="#hero" data-label="Home"></a>
+    <a class="dot-nav-item" href="#shows-gigs" data-label="Shows & Gigs"></a>
+    <a class="dot-nav-item" href="#the-band" data-label="The Band"></a>
+    <a class="dot-nav-item" href="#our-story" data-label="Our Story"></a>
+    <a class="dot-nav-item" href="#video" data-label="Video"></a>
+    <a class="dot-nav-item" href="#where-weve-been" data-label="Where We've Been"></a>
+    <a class="dot-nav-item" href="#testimonials" data-label="What They Say"></a>
+    <a class="dot-nav-item" href="#photos" data-label="Photo's"></a>
+    <a class="dot-nav-item" href="#get-in-touch" data-label="Get in Touch"></a>
+    <a class="dot-nav-item" href="#outro" data-label="Outro"></a>
+  </nav>
 
   <div id="spotify-bar">
     <iframe

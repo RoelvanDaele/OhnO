@@ -1,3 +1,71 @@
+// Preloader
+(function () {
+  const preloader = document.getElementById('preloader');
+  if (!preloader) return;
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      preloader.classList.add('hidden');
+      setTimeout(() => preloader.remove(), 700);
+    }, 500);
+  });
+})();
+
+// Custom cursor (alleen op apparaten met muis)
+(function () {
+  if (window.matchMedia('(hover: none)').matches) return;
+  const cursor = document.createElement('div');
+  cursor.className = 'cursor';
+  document.body.appendChild(cursor);
+
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top  = e.clientY + 'px';
+  });
+
+  document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; });
+  document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; });
+
+  document.addEventListener('mouseover', e => {
+    const el = e.target.closest('a, button, .photo-item, .video-thumb, .dot-nav-item, .carousel-btn, label, select, input, textarea');
+    cursor.classList.toggle('hover', !!el);
+  });
+})();
+
+// Dot navigatie + sectie reveal
+(function () {
+  const allSections = Array.from(document.querySelectorAll('section[id]'));
+  const dots = document.querySelectorAll('.dot-nav-item');
+  const nav = document.getElementById('dot-nav');
+
+  // Reveal via IntersectionObserver
+  allSections.forEach(s => { if (s.id !== 'hero') s.classList.add('section-reveal'); });
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('revealed'); });
+  }, { threshold: 0.1 });
+  allSections.forEach(s => revealObserver.observe(s));
+
+  // Actieve dot + thema op basis van scrollpositie
+  function updateNav() {
+    const mid = window.scrollY + window.innerHeight / 2;
+    let active = allSections[0];
+    allSections.forEach(s => { if (s.offsetTop <= mid) active = s; });
+    dots.forEach(dot => dot.classList.toggle('active', dot.getAttribute('href') === '#' + active.id));
+    const isLight = active.dataset.navTheme === 'light';
+    if (nav) nav.classList.toggle('on-light', isLight);
+    document.body.dataset.theme = isLight ? 'light' : 'dark';
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(dot.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+})();
+
 // Spotify bar — verschijn pas als hero niet meer zichtbaar is
 (function () {
   const bar = document.getElementById('spotify-bar');
@@ -7,6 +75,35 @@
   new IntersectionObserver((entries) => {
     bar.classList.toggle('visible', !entries[0].isIntersecting);
   }, { threshold: 0 }).observe(hero);
+})();
+
+// Countdown next show
+(function () {
+  const target = new Date('2026-06-27T12:00:00');
+  const els = {
+    days:  document.getElementById('cd-days'),
+    hours: document.getElementById('cd-hours'),
+    mins:  document.getElementById('cd-mins'),
+    secs:  document.getElementById('cd-secs'),
+  };
+  if (!els.days) return;
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function tick() {
+    const diff = target - Date.now();
+    if (diff <= 0) {
+      Object.values(els).forEach(el => el.textContent = '00');
+      return;
+    }
+    els.days.textContent  = pad(Math.floor(diff / 86400000));
+    els.hours.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+    els.mins.textContent  = pad(Math.floor((diff % 3600000) / 60000));
+    els.secs.textContent  = pad(Math.floor((diff % 60000) / 1000));
+  }
+
+  tick();
+  setInterval(tick, 1000);
 })();
 
 // Smooth scroll voor navigatie-links
@@ -111,6 +208,9 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
       setTimeout(() => {
         const radius = Math.min(8 + group.events.length * 3, 22);
         const eventsHtml = group.events.map(e => `• ${e}`).join('<br>');
+        const popupHtml = `
+          <p class="mpop-city">${group.name}</p>
+          <p class="mpop-events">${eventsHtml}</p>`;
         L.circleMarker([group.lat, group.lng], {
           radius,
           fillColor: '#F985B5',
@@ -118,7 +218,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
           color: '#ffffff',
           weight: 2
         })
-        .bindPopup(`<strong>${group.name}</strong><br>${eventsHtml}`)
+        .bindPopup(popupHtml, { minWidth: 190 })
         .addTo(map);
       }, i * 60);
     });
@@ -284,6 +384,37 @@ function animateCounters(containerSelector, numSelector) {
 animateCounters('.story-stats', '.stat-number');
 animateCounters('.map-stats', '.map-stat-num');
 
+// Tilt-effect op bandleden-kaarten
+(function () {
+  const carousel = document.querySelector('.carousel');
+  if (!carousel) return;
+
+  carousel.addEventListener('mousemove', e => {
+    const card = e.target.closest('.member-card');
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width  - 0.5) * 14;
+    const y = ((e.clientY - rect.top)  / rect.height - 0.5) * -14;
+    card.style.transform = `perspective(600px) rotateY(${x}deg) rotateX(${y}deg) scale(1.04)`;
+    card.style.boxShadow = `0 12px 36px rgba(46,34,25,0.35)`;
+  });
+
+  carousel.addEventListener('mouseleave', () => {
+    document.querySelectorAll('.member-card').forEach(c => {
+      c.style.transform = '';
+      c.style.boxShadow = '';
+    });
+  });
+
+  carousel.addEventListener('mouseout', e => {
+    const card = e.target.closest('.member-card');
+    if (card && !card.contains(e.relatedTarget)) {
+      card.style.transform = '';
+      card.style.boxShadow = '';
+    }
+  });
+})();
+
 // Carrousel (doorlopend / infinite loop)
 (function () {
   const wrapper = document.querySelector('.carousel-track-wrapper');
@@ -359,6 +490,51 @@ animateCounters('.map-stats', '.map-stat-num');
     busy = true;
     goTo(current + 1, true);
   });
+
+  // Drag / swipe
+  let dragStartX = null;
+  let dragged = false;
+
+  // Voorkom native browser-drag op afbeeldingen
+  wrapper.addEventListener('dragstart', e => e.preventDefault());
+
+  function dragStart(x) {
+    dragStartX = x;
+    dragged = false;
+    track.style.transition = 'none';
+    wrapper.classList.add('dragging');
+  }
+
+  function dragMove(x) {
+    if (dragStartX === null) return;
+    const dx = x - dragStartX;
+    if (Math.abs(dx) > 5) dragged = true;
+    if (dragged) {
+      track.style.transform = `translateX(${-(current + visible()) * slideWidth() + dx}px)`;
+    }
+  }
+
+  function dragEnd(x) {
+    if (dragStartX === null) return;
+    const dx = x - dragStartX;
+    dragStartX = null;
+    wrapper.classList.remove('dragging');
+    if (!dragged) return;
+    if (Math.abs(dx) > slideWidth() / 5) {
+      busy = true;
+      goTo(dx < 0 ? current + 1 : current - 1, true);
+    } else {
+      goTo(current, true);
+    }
+  }
+
+  wrapper.addEventListener('mousedown', e => { e.preventDefault(); dragStart(e.clientX); });
+  window.addEventListener('mousemove', e => { if (dragStartX !== null) dragMove(e.clientX); });
+  window.addEventListener('mouseup',   e => { if (dragStartX !== null) dragEnd(e.clientX); });
+
+  wrapper.addEventListener('touchstart', e => dragStart(e.touches[0].clientX), { passive: true });
+  wrapper.addEventListener('touchmove',  e => dragMove(e.touches[0].clientX),  { passive: true });
+  wrapper.addEventListener('touchend',   e => dragEnd(e.changedTouches[0].clientX));
 
   window.addEventListener('resize', () => { build(); goTo(current, false); });
 
