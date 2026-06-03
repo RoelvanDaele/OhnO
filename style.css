@@ -1069,7 +1069,10 @@ h2 {
 .lightbox {
   display: none;
   position: fixed;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background: rgba(0,0,0,0.92);
   z-index: 1100;
   align-items: center;
@@ -1775,7 +1778,7 @@ footer {
 
   /* GLOBAL */
   section { padding: 4rem 1.5rem; }
-  h2 { font-size: 1.6rem; margin-bottom: 1rem; }
+  h2 { font-size: 1.8rem; margin-bottom: 1rem; }
 
   /* HERO */
   .hero-content { transform: translateY(-4rem); }
@@ -1791,6 +1794,8 @@ footer {
   /* THE BAND */
   #the-band { padding-left: 1.5rem; padding-right: 1.5rem; }
   #the-band .carousel { padding-top: 0.75rem; }
+  .carousel-btn { width: 2rem; height: 2rem; font-size: 1rem; }
+  .carousel-slide { padding: 0 0.5rem; }
 
   /* OUR STORY */
   .story-columns { flex-direction: column; }
@@ -1800,6 +1805,8 @@ footer {
   .story-stats { gap: 1rem; flex-wrap: nowrap; padding-top: 1.25rem; }
   .stat-number { font-size: 1.6rem; }
   .stat-label { font-size: 0.6rem; }
+  .story-follow { text-align: center; font-size: 1.3rem; }
+  #our-story .social-buttons { justify-content: center; }
 
   /* VIDEO */
   .video-thumbs { grid-template-columns: repeat(2, 1fr); }
@@ -1841,7 +1848,7 @@ footer {
 
   /* GLOBAL */
   section { padding: 3rem 1rem; }
-  h2 { font-size: 1.35rem; }
+  h2 { font-size: 1.5rem; }
 
   /* HERO */
   .hero-content { transform: translateY(-2rem); }
