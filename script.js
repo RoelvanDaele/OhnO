@@ -338,6 +338,41 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   });
 })();
 
+// Show modal
+(function () {
+  const modal   = document.getElementById('show-modal');
+  const btnClose = document.getElementById('show-modal-close');
+  if (!modal) return;
+
+  function open(row) {
+    document.getElementById('sm-day').textContent   = row.querySelector('.date-day').textContent;
+    document.getElementById('sm-month').textContent = row.querySelector('.date-month').textContent;
+    document.getElementById('sm-title').textContent    = row.querySelector('.show-title').textContent;
+    document.getElementById('sm-location').textContent = row.querySelector('.show-location').textContent;
+    document.getElementById('sm-time').textContent     = row.querySelector('.show-datetime').textContent;
+    document.getElementById('sm-desc').textContent     = row.dataset.description || '';
+    const link = row.querySelector('.show-link');
+    document.getElementById('sm-link').href = link ? link.href : '#';
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.show-info-btn').forEach(btn => {
+    btn.addEventListener('click', () => open(btn.closest('.show-row-v2')));
+  });
+
+  btnClose.addEventListener('click', close);
+  modal.addEventListener('click', e => { if (e.target === modal) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('active')) close(); });
+})();
+
 // Shows & Gigs — meer/minder past shows
 (function () {
   const btn = document.getElementById('shows-toggle-btn');

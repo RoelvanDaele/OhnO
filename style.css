@@ -633,6 +633,152 @@ h2 {
   color: var(--bruin);
 }
 
+/* SHOW INFO KNOP */
+.show-info-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: auto;
+  font-family: 'Eurostile', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--roze);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: opacity 0.2s;
+}
+
+.show-info-btn:hover { opacity: 0.7; }
+
+.show-row-v2 .show-link { margin-left: 1rem; }
+
+/* SHOW MODAL */
+.show-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 600;
+  align-items: center;
+  justify-content: center;
+}
+
+.show-modal.active { display: flex; }
+
+.show-modal-card {
+  background: var(--beige);
+  max-width: 480px;
+  width: calc(100% - 3rem);
+  padding: 2rem;
+  position: relative;
+  border-radius: var(--radius);
+  animation: modal-in 0.3s ease;
+}
+
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.show-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: var(--bruin);
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.show-modal-close:hover { opacity: 1; }
+
+.show-modal-head {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.show-modal-dateblock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--roze);
+  color: var(--bruin);
+  min-width: 3.5rem;
+  height: 3.5rem;
+  flex-shrink: 0;
+  border-radius: var(--radius);
+}
+
+.show-modal-dateblock #sm-day {
+  font-family: 'Bauhaus', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.show-modal-dateblock #sm-month {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  margin-top: 0.1rem;
+}
+
+.show-modal-meta h3 {
+  font-family: 'Bauhaus', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--bruin);
+  margin: 0 0 0.2rem;
+}
+
+.show-modal-meta p {
+  font-family: 'Eurostile', sans-serif;
+  font-size: 0.82rem;
+  color: var(--bruin);
+  opacity: 0.7;
+  margin: 0;
+  line-height: 1.5;
+}
+
+#sm-desc {
+  font-family: 'Eurostile', sans-serif;
+  font-size: 0.9rem;
+  color: var(--bruin);
+  line-height: 1.7;
+  margin: 0 0 1.5rem;
+}
+
+.show-modal-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Bauhaus', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bruin);
+  text-decoration: none;
+  border-bottom: 2px solid var(--roze);
+  padding-bottom: 0.1rem;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.show-modal-link:hover {
+  color: var(--roze);
+  border-color: var(--bruin);
+}
+
 /* GET IN TOUCH */
 .contact-columns {
   display: flex;
@@ -744,8 +890,42 @@ h2 {
   color: var(--bruin);
 }
 
+/* CONTACT DOWNLOADS */
+.contact-downloads {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Eurostile', sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bruin);
+  text-decoration: none;
+  border-bottom: 1px solid var(--roze);
+  padding-bottom: 0.15rem;
+  width: fit-content;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.btn-download i {
+  color: var(--roze);
+  font-size: 0.9rem;
+}
+
+.btn-download:hover {
+  color: var(--roze);
+  border-color: var(--bruin);
+}
+
 /* CONTACT FOLLOW US */
-.contact-follow {
+#get-in-touch .contact-follow {
   margin-top: 2.5rem;
   color: var(--bruin);
   font-size: 1.3rem;
@@ -1559,4 +1739,98 @@ footer {
   border-top: 1px solid #ddd;
   color: #888;
   font-size: 0.9rem;
+}
+
+/* ===========================================
+   RESPONSIVE — TABLET & MOBIEL
+   =========================================== */
+
+@media (max-width: 768px) {
+
+  /* GLOBAL */
+  section { padding: 4rem 1.5rem; }
+  h2 { font-size: 1.6rem; margin-bottom: 1rem; }
+  .inner { max-width: 100%; }
+
+  /* HERO */
+  .hero-content { transform: translateY(-5rem); }
+  .hero-tagline { font-size: 1.2rem; letter-spacing: 0.1em; }
+  .btn-book { margin-top: 2.5rem; }
+  .hero-next-show { bottom: 7rem; }
+
+  /* THE BAND */
+  #the-band { padding-left: 1.5rem; padding-right: 1.5rem; }
+
+  /* OUR STORY */
+  .story-columns { flex-direction: column; }
+  .story-photo { width: 100%; max-height: 300px; }
+  .story-pullquote { font-size: 1.3rem; margin-bottom: 2rem; }
+  .story-stats { gap: 1.5rem; flex-wrap: wrap; }
+
+  /* VIDEO */
+  .video-thumbs { grid-template-columns: repeat(2, 1fr); }
+  .video-inner { max-width: 100%; }
+
+  /* WHERE WE'VE BEEN */
+  .map-stats { gap: 1.5rem; flex-wrap: wrap; }
+  #map { height: 380px; }
+
+  /* PHOTOS */
+  #photos { padding-left: 1.5rem; padding-right: 1.5rem; }
+
+  /* GET IN TOUCH */
+  .contact-columns { flex-direction: column; gap: 2rem; }
+  .form-row { flex-direction: column; }
+
+  /* OUTRO */
+  #outro { padding: 3rem 1.5rem; }
+
+  /* SHOW MODAL */
+  .show-modal-card { padding: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+
+  /* GLOBAL */
+  section { padding: 3rem 1rem; }
+  h2 { font-size: 1.4rem; }
+
+  /* HERO */
+  .hero-content { transform: translateY(-2rem); }
+  .hero-tagline { font-size: 1rem; margin-top: 3rem; }
+  .btn-book { margin-top: 2rem; }
+  .hero-next-show { bottom: 5.5rem; }
+  .ns-v3-info { font-size: 1rem; }
+  .countdown { gap: 0.35rem; }
+  .cd-num { font-size: 1.1rem; }
+  .cd-label { font-size: 0.38rem; }
+  .scroll-indicator { bottom: 1.5rem; }
+
+  /* SHOWS & GIGS */
+  .show-row-v2 { flex-wrap: wrap; gap: 0.75rem 1rem; }
+  .show-info-btn { order: 3; margin-left: auto; }
+  .show-row-v2 .show-link { order: 4; margin-left: 0.75rem; }
+
+  /* OUR STORY */
+  .story-stats { gap: 1rem; }
+  .stat-number { font-size: 2rem; }
+  .story-pullquote { font-size: 1.1rem; }
+
+  /* VIDEO */
+  .video-thumbs { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+
+  /* WHERE WE'VE BEEN */
+  .map-stats { gap: 1rem; }
+  .map-stat-num { font-size: 2rem; }
+  #map { height: 280px; }
+
+  /* THE BAND */
+  #the-band { padding-left: 1rem; padding-right: 1rem; }
+
+  /* PHOTOS */
+  #photos { padding-left: 1rem; padding-right: 1rem; }
+
+  /* GET IN TOUCH */
+  #get-in-touch .btn-social { width: 3rem; height: 3rem; font-size: 1.2rem; }
+  .contact-downloads { gap: 0.5rem; }
 }
