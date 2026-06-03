@@ -292,17 +292,12 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
       lbPlaceholder.style.display = 'block';
     }
     lightbox.classList.add('active');
-    // iOS Safari scroll lock
-    const scrollY = window.scrollY;
-    document.body.style.cssText = `overflow:hidden;position:fixed;top:-${scrollY}px;width:100%;`;
-    document.body._lbScrollY = scrollY;
+    document.body.style.overflow = 'hidden';
   }
 
   function close() {
     lightbox.classList.remove('active');
-    const scrollY = document.body._lbScrollY || 0;
-    document.body.style.cssText = '';
-    window.scrollTo(0, scrollY);
+    document.body.style.overflow = '';
     lbImg.src = '';
   }
 

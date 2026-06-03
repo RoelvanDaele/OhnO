@@ -85,7 +85,7 @@ body {
   font-family: 'Eurostile', sans-serif;
   font-weight: 400;
   color: var(--bruin);
-  background: var(--beige);
+  background: var(--bruin);
   line-height: 1.6;
   padding-bottom: 80px;
 }
@@ -1823,7 +1823,12 @@ footer {
   .contact-form { flex: unset; width: 100%; }
   .form-row { flex-direction: column; }
   .contact-info p { text-align: justify; }
-  .form-field input[type="date"] { max-width: 100%; min-width: 0; width: 100%; }
+  .form-field input[type="date"] {
+    width: 100% !important;
+    min-width: 0 !important;
+    -webkit-appearance: none;
+    appearance: none;
+  }
 
   /* SHOW MODAL */
   .show-modal-card { padding: 1.5rem; }
