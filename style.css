@@ -228,6 +228,8 @@ section {
 #hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--bruin);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -471,10 +473,11 @@ section {
 }
 
 .btn-book {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: min(400px, 70vw);
   margin-top: 5rem;
-  text-align: center;
   text-decoration: none;
   background: #ffffff;
   color: var(--bruin);
@@ -610,7 +613,9 @@ h2 {
 .shows-more { margin-bottom: 0.5rem; }
 
 .shows-toggle {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -868,7 +873,9 @@ h2 {
 }
 
 .btn-submit {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   padding: 1rem 0;
   background: var(--roze);
@@ -1060,7 +1067,7 @@ h2 {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.92);
-  z-index: 500;
+  z-index: 1100;
   align-items: center;
   justify-content: center;
 }
@@ -1439,6 +1446,9 @@ h2 {
   cursor: pointer;
   flex-shrink: 0;
   border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
@@ -1750,87 +1760,113 @@ footer {
   /* GLOBAL */
   section { padding: 4rem 1.5rem; }
   h2 { font-size: 1.6rem; margin-bottom: 1rem; }
-  .inner { max-width: 100%; }
 
   /* HERO */
-  .hero-content { transform: translateY(-5rem); }
-  .hero-tagline { font-size: 1.2rem; letter-spacing: 0.1em; }
-  .btn-book { margin-top: 2.5rem; }
+  .hero-content { transform: translateY(-4rem); }
+  .hero-content img { width: min(280px, 60vw); }
+  .hero-tagline { font-size: 1.15rem; letter-spacing: 0.08em; margin-top: 3rem; width: min(280px, 60vw); }
+  .btn-book { margin-top: 2rem; width: min(280px, 60vw); font-size: 1rem; padding: 0.75rem 0; }
   .hero-next-show { bottom: 7rem; }
+
+  /* BUTTONS */
+  .shows-toggle { font-size: 1rem; padding: 0.75rem 0; }
+  .btn-submit { font-size: 1rem; padding: 0.75rem 0; }
 
   /* THE BAND */
   #the-band { padding-left: 1.5rem; padding-right: 1.5rem; }
+  #the-band .carousel { padding-top: 0.75rem; }
 
   /* OUR STORY */
   .story-columns { flex-direction: column; }
-  .story-photo { width: 100%; max-height: 300px; }
-  .story-pullquote { font-size: 1.3rem; margin-bottom: 2rem; }
-  .story-stats { gap: 1.5rem; flex-wrap: wrap; }
+  .story-photo { width: 100%; height: auto; max-height: none; object-fit: cover; }
+  .story-pullquote { font-size: 1.3rem; margin-bottom: 1.5rem; }
+  .story-text p { text-align: justify; }
+  .story-stats { gap: 1rem; flex-wrap: nowrap; padding-top: 1.25rem; }
+  .stat-number { font-size: 1.6rem; }
+  .stat-label { font-size: 0.6rem; }
 
   /* VIDEO */
   .video-thumbs { grid-template-columns: repeat(2, 1fr); }
   .video-inner { max-width: 100%; }
 
   /* WHERE WE'VE BEEN */
-  .map-stats { gap: 1.5rem; flex-wrap: wrap; }
-  #map { height: 380px; }
+  .map-stats { gap: 1rem; flex-wrap: nowrap; }
+  .map-stat-num { font-size: 1.6rem; }
+  .map-stat-label { font-size: 0.6rem; }
+  #map { height: 360px; }
+
+  /* TESTIMONIALS */
+  .testimonials-grid { grid-template-columns: 1fr; gap: 2rem; }
 
   /* PHOTOS */
   #photos { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .photo-grid { gap: 0.5rem; }
 
   /* GET IN TOUCH */
   .contact-columns { flex-direction: column; gap: 2rem; }
+  .contact-form { flex: unset; width: 100%; }
   .form-row { flex-direction: column; }
-
-  /* OUTRO */
-  #outro { padding: 3rem 1.5rem; }
 
   /* SHOW MODAL */
   .show-modal-card { padding: 1.5rem; }
+
+  /* OUTRO */
+  #outro { padding: 3rem 1.5rem; }
 }
 
 @media (max-width: 480px) {
 
   /* GLOBAL */
   section { padding: 3rem 1rem; }
-  h2 { font-size: 1.4rem; }
+  h2 { font-size: 1.35rem; }
 
   /* HERO */
   .hero-content { transform: translateY(-2rem); }
-  .hero-tagline { font-size: 1rem; margin-top: 3rem; }
-  .btn-book { margin-top: 2rem; }
+  .hero-content img { width: min(220px, 55vw); }
+  .hero-tagline { font-size: 0.95rem; margin-top: 2rem; width: min(220px, 55vw); }
+  .btn-book { width: min(220px, 55vw); font-size: 0.9rem; padding: 0.65rem 0; margin-top: 1.5rem; }
   .hero-next-show { bottom: 5.5rem; }
-  .ns-v3-info { font-size: 1rem; }
-  .countdown { gap: 0.35rem; }
-  .cd-num { font-size: 1.1rem; }
-  .cd-label { font-size: 0.38rem; }
+  .ns-v3-info { font-size: 0.95rem; }
+  .countdown { gap: 0.3rem; }
+  .cd-num { font-size: 1rem; }
+  .cd-label { font-size: 0.36rem; letter-spacing: 0.15em; }
   .scroll-indicator { bottom: 1.5rem; }
 
   /* SHOWS & GIGS */
-  .show-row-v2 { flex-wrap: wrap; gap: 0.75rem 1rem; }
-  .show-info-btn { order: 3; margin-left: auto; }
-  .show-row-v2 .show-link { order: 4; margin-left: 0.75rem; }
-
-  /* OUR STORY */
-  .story-stats { gap: 1rem; }
-  .stat-number { font-size: 2rem; }
-  .story-pullquote { font-size: 1.1rem; }
-
-  /* VIDEO */
-  .video-thumbs { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
-
-  /* WHERE WE'VE BEEN */
-  .map-stats { gap: 1rem; }
-  .map-stat-num { font-size: 2rem; }
-  #map { height: 280px; }
+  .show-row-v2 {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto;
+    column-gap: 0.75rem;
+    row-gap: 0;
+    align-items: start;
+    padding: 0.85rem 0;
+  }
+  .show-date-wrapper { grid-column: 1; grid-row: 1 / span 2; align-self: center; }
+  .show-details { grid-column: 2; grid-row: 1; }
+  .show-info-btn { grid-column: 2; grid-row: 2; margin-left: 0; margin-top: 0.3rem; text-align: left; }
+  .show-row-v2 .show-link { grid-column: 3; grid-row: 1 / span 2; align-self: center; margin-left: 0; }
+  .shows-toggle { font-size: 0.9rem; padding: 0.65rem 0; }
 
   /* THE BAND */
   #the-band { padding-left: 1rem; padding-right: 1rem; }
 
+  /* OUR STORY */
+  .story-stats { gap: 0.6rem; }
+  .stat-number { font-size: 1.4rem; }
+  .story-pullquote { font-size: 1.05rem; }
+
+  /* WHERE WE'VE BEEN */
+  .map-stats { gap: 0.6rem; }
+  .map-stat-num { font-size: 1.4rem; }
+  #map { height: 280px; }
+
   /* PHOTOS */
   #photos { padding-left: 1rem; padding-right: 1rem; }
+  .photo-grid { gap: 0.4rem; }
 
   /* GET IN TOUCH */
   #get-in-touch .btn-social { width: 3rem; height: 3rem; font-size: 1.2rem; }
   .contact-downloads { gap: 0.5rem; }
+  .btn-submit { font-size: 0.9rem; padding: 0.65rem 0; }
 }
